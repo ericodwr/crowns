@@ -1,10 +1,11 @@
 import React from 'react';
-import './Directory.styles.scss';
 
-import categories from '../../categories.json';
-import CategoryItem from '../CategoryItem/CategoryItem';
+import './Home.styles.scss';
 
-const Directory = () => {
+import categories from '../../../categories.json';
+import CategoryItem from '../../CategoryItem/CategoryItem';
+
+const Home = () => {
   return (
     <div className="directory-container">
       {categories.map((category) => (
@@ -14,4 +15,4 @@ const Directory = () => {
   );
 };
 
-export default Directory;
+export default Home;
