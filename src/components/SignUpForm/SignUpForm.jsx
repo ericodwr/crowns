@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 
+// Styles
 import './SignUp.styles.scss';
 
+// firebase utils
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils';
 
+// Components
 import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
 
+// Default Forms
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -18,11 +22,16 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+  // State
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  // Context
+
+  // Reset form function
   const resetFormFields = () => setFormFields(defaultFormFields);
 
+  // Handling changes form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormFields({
@@ -31,6 +40,7 @@ const SignUpForm = () => {
     });
   };
 
+  // Handling submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,6 +53,7 @@ const SignUpForm = () => {
         email,
         password,
       );
+
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
