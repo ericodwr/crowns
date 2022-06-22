@@ -2,19 +2,19 @@ import React, { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
 // Context
-import { UserContext } from '../../../context/UserContext';
-import { CartContext } from '../../../context/CartContext';
+import { UserContext } from '../../context/UserContext';
+import { CartContext } from '../../context/CartContext';
 
 // Firebase Utils
-import { signOutUser } from '../../../utils/firebase/firebase.utils';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 // Styles
 import './Navigation.styles.scss';
-import { ReactComponent as CrwnLogo } from '../../../assets/crown.svg';
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 
 // Components
-import CartIcon from '../../CartIcon/CartIcon';
-import CartDropDown from '../../CartDropDown/CartDropDown';
+import CartIcon from '../../components/CartIcon/CartIcon';
+import CartDropDown from '../../components/CartDropDown/CartDropDown';
 
 const Navigation = () => {
   // Context

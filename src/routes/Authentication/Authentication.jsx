@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Authentication.styles.scss';
 
-import SignUpForm from '../../SignUpForm/SignUpForm';
-import SignInForm from '../../SignInForm/SignInForm';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import SignInForm from '../../components/SignInForm/SignInForm';
 
 const Authentication = () => {
   return (
