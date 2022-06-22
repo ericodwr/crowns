@@ -9,11 +9,11 @@ import ProductCard from '../ProductCard/ProductCard';
 const CategoryPreview = ({ title, products }) => {
   return (
     <div className="category-preview-container">
-      <Link to={title}>
-        <h2 className="title-container">
+      <h2 className="title-container">
+        <Link to={title}>
           <span className="title">{title.toUpperCase()}</span>
-        </h2>
-      </Link>
+        </Link>
+      </h2>
       <div className="preview">
         {products
           .filter((_, idx) => idx < 4)

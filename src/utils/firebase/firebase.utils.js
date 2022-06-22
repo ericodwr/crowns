@@ -26,7 +26,7 @@ import {
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyAm5VWwjBwyBc6LO5aLct0PLUu9RfjBe7g',
-  authDomain: 'crowns-db-5ac4b.firebaseapp.com',
+  authDomain: 'https://crowns-edr.netlify.app',
   projectId: 'crowns-db-5ac4b',
   storageBucket: 'crowns-db-5ac4b.appspot.com',
   messagingSenderId: '335520111713',

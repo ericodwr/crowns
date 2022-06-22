@@ -7,13 +7,14 @@ const BUTTON_TYPES_CLASSES = {
   inverted: 'inverted',
 };
 
-const Button = ({ children, buttonType, ...otherProps }) => {
+const Button = ({ children, isLoading, buttonType, ...otherProps }) => {
   return (
     <button
+      disabled={isLoading}
       className={`button-container ${BUTTON_TYPES_CLASSES[buttonType]}`}
       {...otherProps}
     >
-      {children}
+      {isLoading ? 'Processing' : children}
     </button>
   );
 };

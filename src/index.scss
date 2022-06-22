@@ -7,7 +7,6 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  padding: 1rem 3rem;
 }
 
 code {
@@ -18,4 +17,8 @@ code {
 a {
   text-decoration: none;
   color: black;
+}
+
+.main-content {
+  padding: 1rem 3rem;
 }
