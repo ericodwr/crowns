@@ -1,5 +1,8 @@
 require('dotenv').config();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+const PUBLISHABLE_KEY = `${process.env.STRIPE_SECRET_KEY}`;
+
+const stripe = require('stripe')(PUBLISHABLE_KEY);
 
 exports.handler = async (event) => {
   let paymentIntent;
