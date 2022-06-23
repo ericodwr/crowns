@@ -50,14 +50,21 @@ const PaymentForm = () => {
 
     console.log(client_secret);
 
-    const paymentResult = await stripe.confirmCardPayment(`${client_secret}`, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: currentUser ? currentUser.displayName : 'guest',
+    const paymentResult = await stripe.confirmCardPayment(
+      `${
+        client_secret
+          ? client_secret
+          : 'pi_3LDhW4I81pXDlBM71dcfzzJM_secret_8MwkEHYn7q7D8rXrFVJSJC1hO'
+      }`,
+      {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: currentUser ? currentUser.displayName : 'guest',
+          },
         },
       },
-    });
+    );
 
     // Loading
     SetisProcessingPayment(false);
