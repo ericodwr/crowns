@@ -10,6 +10,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 
 // firestore db
@@ -85,3 +86,6 @@ googleProvider.setCustomParameters({
 });
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
+
+// Sign Out
+export const signOutUser = async () => await signOut(auth);

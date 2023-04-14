@@ -1,9 +1,10 @@
+// router dom
 import { Routes, Route } from 'react-router-dom';
 
+// pages
 import Home from './routes/Home/Home';
 import Navigation from './routes/Navigation/Navigation';
 import Shop from './routes/Shop/Shop';
-import SignIn from './components/sign-in/SignIn';
 import Authentication from './routes/Authentication/Authentication';
 
 function App() {

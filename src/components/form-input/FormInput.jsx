@@ -1,5 +1,6 @@
 import React from 'react';
 
+// styles
 import './form-input.styles.scss';
 
 const FormInput = ({ label, ...otherProps }) => {
