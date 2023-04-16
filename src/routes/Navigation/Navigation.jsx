@@ -5,23 +5,25 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 // context
 import { UserContext } from '../../context/UserContext';
+import { CartContext } from '../../context/CartContext';
 
 // router
 import { Outlet, Link } from 'react-router-dom';
 
 // logo
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
+
+// styles
 import './navigation.styles.scss';
+
+// components
+import CartDropdown from '../../components/cart-dropdown/CartDropdown';
+import CartIcon from '../../components/cart-icon/CartIcon';
 
 const Navigation = () => {
   // context
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  // handler
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -30,12 +32,15 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </Link>
         <div className="nav-links-container">
+          {currentUser && (
+            <div className="user">Hi, {currentUser.displayName}</div>
+          )}
           <Link className="nav-link" to={'/shop'}>
             Shop
           </Link>
 
           {currentUser ? (
-            <span onClick={signOutHandler} className="nav-link">
+            <span onClick={signOutUser} className="nav-link">
               SIGN OUT
             </span>
           ) : (
@@ -43,7 +48,10 @@ const Navigation = () => {
               Sign In
             </Link>
           )}
+
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>

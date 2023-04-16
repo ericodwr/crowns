@@ -11,6 +11,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 // firestore db
@@ -64,6 +65,10 @@ export const createUserDocumentFromAuth = async (
     return userDocRef;
   }
 };
+
+// tracking user
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
 
 // sign up email/password
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
