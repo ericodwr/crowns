@@ -8,18 +8,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 // contrext
 import { UserProvider } from './context/UserContext';
-import { ProductProvider } from './context/ProductsContext';
+import { CategoriesProvider } from './context/CategoriesContext';
 import { CartProvider } from './context/CartContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ProductProvider>
+        <CategoriesProvider>
           <CartProvider>
             <App />
           </CartProvider>
-        </ProductProvider>
+        </CategoriesProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
