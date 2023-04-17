@@ -26,11 +26,16 @@ const Category = () => {
   }, [category, categoriesMap]);
 
   return (
-    <div className="category-container">
-      {products?.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
-    </div>
+    <>
+      <div className="category-title">
+        <h2>{category}</h2>
+      </div>
+      <div className="category-container">
+        {products?.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </div>
+    </>
   );
 };
 
