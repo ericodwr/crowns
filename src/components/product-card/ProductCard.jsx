@@ -1,20 +1,35 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 // context
-import { CartContext } from '../../context/CartContext';
+import { addItemToCart } from '../../store/cart/cart.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 // components and styles
 import Button from '../button/Button';
 import './product-card.styles.scss';
+import { selectCartItems } from '../../store/cart/cart.selector';
+import { useNavigate } from 'react-router-dom';
+import { selectCurrentUser } from '../../store/user/user.selector';
 
 const ProductCard = ({ product }) => {
   const { id, name, imageUrl, price } = product;
 
-  // context
-  const { addItemToCart } = useContext(CartContext);
+  // redux
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const user = useSelector(selectCurrentUser);
+
+  // router
+  const navigate = useNavigate();
 
   // helper func
-  const addProductToCart = () => addItemToCart(product);
+  const addProductToCart = () => {
+    if (!user) {
+      alert('Please Sign In to make order');
+      return navigate('/auth');
+    }
+    return dispatch(addItemToCart(cartItems, product));
+  };
 
   return (
     <div className="product-card-container">

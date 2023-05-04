@@ -1,11 +1,12 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 
 // firebase
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
-// context
-import { UserContext } from '../../context/UserContext';
-import { CartContext } from '../../context/CartContext';
+// redux
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectCartOpen } from '../../store/cart/cart.selector';
 
 // router
 import { Outlet, Link } from 'react-router-dom';
@@ -21,9 +22,9 @@ import CartDropdown from '../../components/cart-dropdown/CartDropdown';
 import CartIcon from '../../components/cart-icon/CartIcon';
 
 const Navigation = () => {
-  // context
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  // redux
+  const isCartOpen = useSelector(selectCartOpen);
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <Fragment>

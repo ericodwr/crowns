@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 // firebase
 import {
   signInWithGooglePopup,
@@ -24,9 +26,12 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const navigate = useNavigate();
+
   // button
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+    navigate('/');
   };
 
   // handler
@@ -41,7 +46,7 @@ const SignIn = () => {
 
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-
+      navigate('/');
       setFormFields(defaultFormFields);
     } catch (error) {
       switch (error.code) {

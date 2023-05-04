@@ -1,14 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // get params
 import { useParams } from 'react-router-dom';
 
-// context
-import { CategoriesContext } from '../../context/CategoriesContext';
+// redux data
+import { useSelector } from 'react-redux';
+import {
+  selectCategoriesIsLoading,
+  selectCategoriesMap,
+} from '../../store/categories/categories.selector';
 
 // styles and components
 import './category.styles.scss';
 import ProductCard from '../../components/product-card/ProductCard';
+import Spinner from '../../components/spinner/Spinner';
 
 const Category = () => {
   // states
@@ -17,8 +22,11 @@ const Category = () => {
   // get value params
   const { category } = useParams();
 
-  // get context
-  const { categoriesMap } = useContext(CategoriesContext);
+  // get redux data
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const isLoading = useSelector(selectCategoriesIsLoading);
+
+  console.log(isLoading);
 
   // tracking value from params and set to state
   useEffect(() => {
@@ -30,11 +38,15 @@ const Category = () => {
       <div className="category-title">
         <h2>{category}</h2>
       </div>
-      <div className="category-container">
-        {products?.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
-      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="category-container">
+          {products?.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
