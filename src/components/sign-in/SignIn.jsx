@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-// firebase
+// redux
 import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from '../../utils/firebase/firebase.utils';
+  emailSignInStart,
+  googleSignInStart,
+} from '../../store/user/user.action';
 
 // components
 import FormInput from '../form-input/FormInput';
@@ -14,6 +14,8 @@ import Button from '../button/Button';
 
 // styles
 import './sign-in.styles.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
 
 // default forms
 const defaultFormFields = {
@@ -26,13 +28,23 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  // redux
+  const dispatch = useDispatch();
+  const user = useSelector(selectCurrentUser);
+
+  // router
   const navigate = useNavigate();
 
   // button
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
-    navigate('/');
+  const signInWithGoogle = () => {
+    dispatch(googleSignInStart());
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
 
   // handler
   const handleChange = (e) => {
@@ -41,12 +53,12 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
-      navigate('/');
+      dispatch(emailSignInStart(email, password));
+
       setFormFields(defaultFormFields);
     } catch (error) {
       switch (error.code) {

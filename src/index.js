@@ -4,18 +4,24 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// stripe
+import { Elements } from '@stripe/react-stripe-js';
+
 // react router dom
 import { BrowserRouter } from 'react-router-dom';
 
 // redux
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { stripePromise } from './utils/srtipe/stripe.utils';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

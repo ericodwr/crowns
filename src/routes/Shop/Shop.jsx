@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // data
-import { fetchCategoriesAsync } from '../../store/categories/categories.action';
+import { fetchCategoriesStart } from '../../store/categories/categories.action';
 
 // components
 import CategoriesPreview from '../CategoriesPreview/CategoriesPreview';
@@ -24,7 +24,7 @@ const Shop = () => {
 
   // fetch database from firebase using redux
   useEffect(() => {
-    dispatch(fetchCategoriesAsync());
+    dispatch(fetchCategoriesStart());
   }, []);
 
   return (

@@ -12,6 +12,7 @@ import './checkout.styles.scss';
 
 // components
 import CheckoutItem from '../../components/checkout-item/CheckoutItem';
+import PaymentForm from '../../components/payment-form/PaymentForm';
 
 const Checkout = () => {
   // redux
@@ -42,6 +43,7 @@ const Checkout = () => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
       <span className="total">Total: ${totalPrice}</span>
+      <PaymentForm />
     </div>
   );
 };

@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
 
-// firebase
-import { signOutUser } from '../../utils/firebase/firebase.utils';
-
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector';
 import { selectCartOpen } from '../../store/cart/cart.selector';
 
@@ -20,11 +17,15 @@ import './navigation.styles.scss';
 // components
 import CartDropdown from '../../components/cart-dropdown/CartDropdown';
 import CartIcon from '../../components/cart-icon/CartIcon';
+import { userSignOut } from '../../store/user/user.action';
 
 const Navigation = () => {
   // redux
   const isCartOpen = useSelector(selectCartOpen);
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
+  const onSignOutHandler = () => dispatch(userSignOut());
 
   return (
     <Fragment>
@@ -41,7 +42,7 @@ const Navigation = () => {
           </Link>
 
           {currentUser ? (
-            <span onClick={signOutUser} className="nav-link">
+            <span onClick={onSignOutHandler} className="nav-link">
               SIGN OUT
             </span>
           ) : (

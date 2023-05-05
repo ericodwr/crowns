@@ -92,7 +92,6 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
   const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-
   // if user not exists create one
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
@@ -109,9 +108,9 @@ export const createUserDocumentFromAuth = async (
       console.log('error creating user', error.message);
     }
 
-    // if user data exists return userDocRef
-    return userDocRef;
+    // if user data exists return userSnapshot
   }
+  return userSnapshot;
 };
 
 // tracking user
@@ -142,3 +141,17 @@ export const signInWithGooglePopup = () =>
 
 // Sign Out
 export const signOutUser = async () => await signOut(auth);
+
+// get current user
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject,
+    );
+  });
+};
