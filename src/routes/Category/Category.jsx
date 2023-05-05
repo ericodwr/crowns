@@ -26,8 +26,6 @@ const Category = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
 
-  console.log(isLoading);
-
   // tracking value from params and set to state
   useEffect(() => {
     setProducts(categoriesMap[category]);

@@ -11,9 +11,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [
   process.env.NODE_ENV !== 'production' && logger,
-  ,
   sagaMiddleware,
-];
+].filter(Boolean);
 
 const composeEnhancers = compose(applyMiddleware(...middlewares));
 
