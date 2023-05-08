@@ -4,11 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useEffect } from 'react';
-import {
-  createUserDocumentFromAuth,
-  getCurrentUser,
-  onAuthStateChangedListener,
-} from './utils/firebase/firebase.utils';
 
 // pages
 import Home from './routes/Home/Home';
