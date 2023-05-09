@@ -11,9 +11,10 @@ import { selectCartItems } from '../../store/cart/cart.selector';
 
 // styles
 import './checkout-item.styles.scss';
+import { CartItem } from '../../store/cart/cart.types';
 
-const CheckoutItem = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity, id } = cartItem;
+const CheckoutItem = ({ cartItem }: { cartItem: CartItem }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
 
   // redux
   const cartItems = useSelector(selectCartItems);

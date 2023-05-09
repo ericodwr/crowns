@@ -1,4 +1,3 @@
-import React from 'react';
 
 // components
 import SignUp from '../../components/sign-up/SignUp';

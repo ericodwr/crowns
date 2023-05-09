@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-
-// firebase
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/firebase.utils';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 // components
 import FormInput from '../form-input/FormInput';
@@ -32,13 +27,13 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   // handler
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormFields((state) => {
       return { ...state, [e.target.name]: e.target.value };
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (password !== confirmPassword) return alert('password do not match');
@@ -47,7 +42,7 @@ const SignUp = () => {
       dispatch(userSignUp(email, password, displayName));
       setFormFields(defaultFormFields);
     } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
+      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
         alert('Cannot create user, email already in use');
       } else {
         console.log(error);

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, FC, FormEvent, ChangeEvent } from 'react';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ const defaultFormFields = {
   password: '',
 };
 
-const SignIn = () => {
+const SignIn: FC = () => {
   // states
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -47,13 +48,13 @@ const SignIn = () => {
   }, [user]);
 
   // handler
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormFields((state) => {
       return { ...state, [e.target.name]: e.target.value };
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -61,8 +62,8 @@ const SignIn = () => {
 
       setFormFields(defaultFormFields);
     } catch (error) {
-      switch (error.code) {
-        case 'auth/wrong-password':
+      switch ((error as AuthError).code) {
+        case AuthErrorCodes.INVALID_PASSWORD:
           alert('Incorrect password for email');
           break;
         case 'auth/user-not-found':

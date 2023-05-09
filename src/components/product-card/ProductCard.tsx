@@ -10,8 +10,9 @@ import './product-card.styles.scss';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { useNavigate } from 'react-router-dom';
 import { selectCurrentUser } from '../../store/user/user.selector';
+import { CartItem } from '../../store/cart/cart.types';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product }: { product: CartItem }) => {
   const { id, name, imageUrl, price } = product;
 
   // redux

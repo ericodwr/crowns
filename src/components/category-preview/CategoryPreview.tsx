@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 
 import './category-preview.styles.scss';
 import ProductCard from '../product-card/ProductCard';
+import { CartItem } from '../../store/cart/cart.types';
 
-const CategoryPreview = ({ title, products }) => {
-  
-
+const CategoryPreview = ({
+  title,
+  products,
+}: {
+  title: string;
+  products: CartItem[];
+}) => {
   return (
     <div className="category-preview-container">
       <h2>

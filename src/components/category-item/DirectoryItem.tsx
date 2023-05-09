@@ -1,9 +1,8 @@
-import React from 'react';
-
 import './directory-item.styles.scss';
 import { Link } from 'react-router-dom';
+import { DirectoryCategoryItem } from '../directory/Directory';
 
-const DirectoryItem = ({ category }) => {
+const DirectoryItem = ({ category }: { category: DirectoryCategoryItem }) => {
   const { title, id, imageUrl } = category;
 
   return (

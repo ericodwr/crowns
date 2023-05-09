@@ -12,19 +12,25 @@ import {
 
 // styles and components
 import './category.styles.scss';
-import ProductCard from '../../components/product-card/ProductCard';
+import ProductCard from '../../components/product-card/ProductCard.tsx';
 import Spinner from '../../components/spinner/Spinner';
 
+type CategoryRouteParams = {
+  category: string;
+};
+
 const Category = () => {
-  // states
-  const [products, setProducts] = useState([]);
-
-  // get value params
-  const { category } = useParams();
-
   // get redux data
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
+
+  // get value params
+  const { category } = useParams<
+    keyof CategoryRouteParams
+  >() as CategoryRouteParams;
+
+  // states
+  const [products, setProducts] = useState(categoriesMap[category]);
 
   // tracking value from params and set to state
   useEffect(() => {
