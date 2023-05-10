@@ -21,3 +21,24 @@
     column-gap: 20px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .category-preview-container {
+    align-items: center;
+
+    .preview {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .category-preview-container {
+    align-items: center;
+
+    .preview {
+      grid-template-columns: 1fr;
+    }
+  }
+}

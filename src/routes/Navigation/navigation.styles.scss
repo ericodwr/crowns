@@ -39,3 +39,20 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .navigation {
+    height: 60px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+
+    .logo-container {
+      width: 50px;
+      padding: 0px;
+    }
+
+    .nav-link {
+      width: 80%;
+    }
+  }
+}

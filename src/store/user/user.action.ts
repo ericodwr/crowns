@@ -45,7 +45,7 @@ export type SignInFailed = ActionWithPayload<
   Error
 >;
 
-export type userSignOut = Action<USER_ACTION_TYPES.USER_SIGN_OUT>;
+export type UserSignOut = Action<USER_ACTION_TYPES.USER_SIGN_OUT>;
 
 // function
 export const setCurrentUser = (user: UserData) =>
@@ -84,5 +84,5 @@ export const signInFailed = withMatcher(
 );
 
 export const userSignOut = withMatcher(
-  (): userSignOut => createAction(USER_ACTION_TYPES.USER_SIGN_OUT),
+  (): UserSignOut => createAction(USER_ACTION_TYPES.USER_SIGN_OUT),
 );

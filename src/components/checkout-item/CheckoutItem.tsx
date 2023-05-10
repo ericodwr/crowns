@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 
 // redux
 import {
@@ -13,7 +13,7 @@ import { selectCartItems } from '../../store/cart/cart.selector';
 import './checkout-item.styles.scss';
 import { CartItem } from '../../store/cart/cart.types';
 
-const CheckoutItem = ({ cartItem }: { cartItem: CartItem }) => {
+const CheckoutItem = memo(({ cartItem }: { cartItem: CartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   // redux
@@ -49,6 +49,6 @@ const CheckoutItem = ({ cartItem }: { cartItem: CartItem }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CheckoutItem;

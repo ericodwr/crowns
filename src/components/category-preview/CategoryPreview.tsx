@@ -1,17 +1,21 @@
-import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import './category-preview.styles.scss';
 import ProductCard from '../product-card/ProductCard';
-import { CartItem } from '../../store/cart/cart.types';
+
+export type Category = {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+};
 
 const CategoryPreview = ({
   title,
   products,
 }: {
   title: string;
-  products: CartItem[];
+  products: Category[];
 }) => {
   return (
     <div className="category-preview-container">

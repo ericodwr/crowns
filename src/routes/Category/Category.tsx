@@ -12,7 +12,7 @@ import {
 
 // styles and components
 import './category.styles.scss';
-import ProductCard from '../../components/product-card/ProductCard.tsx';
+import ProductCard from '../../components/product-card/ProductCard';
 import Spinner from '../../components/spinner/Spinner';
 
 type CategoryRouteParams = {

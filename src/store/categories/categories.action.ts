@@ -9,27 +9,27 @@ import { CATEGORIES_ACTION_TYPES, Category } from './categories.types';
 
 // types
 
-export type fetchCategoriesStart =
+export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
 
-export type fetchCategoriesSuccess = ActionWithPayload<
+export type FetchCategoriesSuccess = ActionWithPayload<
   CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
   Category[]
 >;
 
-export type fetchCategoriesFailed = ActionWithPayload<
+export type FetchCategoriesFailed = ActionWithPayload<
   CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
   Error
 >;
 
 // function action
 export const fetchCategoriesStart = withMatcher(
-  (): fetchCategoriesStart =>
+  (): FetchCategoriesStart =>
     createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START),
 );
 
 export const fetchCategoriesSuccess = withMatcher(
-  (categoriesArray: Category[]): fetchCategoriesSuccess =>
+  (categoriesArray: Category[]): FetchCategoriesSuccess =>
     createAction(
       CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
       categoriesArray,
@@ -37,6 +37,6 @@ export const fetchCategoriesSuccess = withMatcher(
 );
 
 export const fetchCategoriesFailed = withMatcher(
-  (error: Error): fetchCategoriesFailed =>
+  (error: Error): FetchCategoriesFailed =>
     createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error),
 );

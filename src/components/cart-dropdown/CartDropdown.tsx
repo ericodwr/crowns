@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback } from 'react';
 
 // router dom
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const CartDropdown = () => {
   const navigate = useNavigate();
 
   // navigate to checkout page
-  const goToCheckoutPage = () => {
+  const goToCheckoutPage = useCallback(() => {
     if (!user) {
       alert('Please Sign In');
       dispatch(closeCart(false));
@@ -33,7 +33,7 @@ const CartDropdown = () => {
 
     dispatch(closeCart(false));
     navigate('/checkout');
-  };
+  }, []);
 
   return (
     <div className="cart-dropdown-container">
